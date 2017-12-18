@@ -31,6 +31,10 @@ class EmailChangeView(UpdateView):
     template_name = 'update_email.html'
     success_url = '/accounts/profile/'
 
+    """
+    If request method is POST this method will try to get the User Object using get_object_or_404,
+    the default method is to to get the kwargs from the url.
+    """
     def get_object(self, queryset=None):
         user = get_object_or_404(User, username=self.request.user)
         return user
