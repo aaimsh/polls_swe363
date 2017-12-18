@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from django.core.exceptions import ValidationError
 
 
 class RegisterForm(UserCreationForm):
@@ -18,7 +19,7 @@ class RegisterForm(UserCreationForm):
         username = self.cleaned_data['username'].lower()
         r = User.objects.filter(username=username)
         if r.count():
-            raise  ValidationError("Username already exists")
+            raise ValidationError("Username already exists")
         return username
 
     def clean_firstname(self):
@@ -33,7 +34,7 @@ class RegisterForm(UserCreationForm):
         email = self.cleaned_data['email'].lower()
         r = User.objects.filter(email=email)
         if r.count():
-            raise  ValidationError("Email already exists")
+            raise ValidationError("Email already exists")
         return email
 
     def clean_password2(self):
