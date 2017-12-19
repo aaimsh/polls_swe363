@@ -43,7 +43,7 @@
 		<div class="content">
 				{% block content %}
 
-				<form method="post" class="form-signin" action="{% url 'register' %}">
+				<form method="post" class="form-signin" action="{% url 'accounts:register' %}">
 				    {% csrf_token %}
 
 					{{ form|bootstrap }}
