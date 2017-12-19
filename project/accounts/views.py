@@ -6,6 +6,7 @@ from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+
 # Create your views here.
 
 
