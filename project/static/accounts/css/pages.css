@@ -1,0 +1,67 @@
+
+.nav-tabs>li>a{
+  color:#ccc;
+}
+
+
+
+.poll-header{
+  height: 80px;
+  background: #ccc;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+  border: 0.1em #000 solid;
+  border-radius: 3px 3px 0 0;
+
+}
+
+
+
+.poll-result{
+  width:95%;
+  margin: 10px auto;
+  border: 0.1em #000 solid;
+  height: 220px;
+  padding: 10px;
+
+}
+
+
+.poll-result > ul{
+  list-style: none;
+  display: inline;
+}
+
+
+.poll-result > ul >li{
+  display: inline;
+}
+
+.chart-result{
+  width:50%;
+  height: 80%;
+  display: inline-block;
+  right: 0;
+  float: right;
+
+}
+
+.left-side{
+  float: left;
+  width: 200px;
+  border: 0.1em #000 solid;
+
+}
+.content{
+  border: 0.1em #000 solid;
+  border-radius: 0 3px 3px 3px 0;
+  width: 100%;
+  padding: 10px;
+}
+.opstions-result{
+  list-style: none;
+  display: inline-block;
+
+}

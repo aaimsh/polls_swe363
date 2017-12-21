@@ -1,0 +1,8 @@
+{% block content %}
+
+			<form method="post" class="form-update-email" action="{% url 'accounts:update-email' %}">
+				{% csrf_token %}
+				{{ form }}
+				<input  class="btn btn-success" type="submit" value="Update" />
+			</form>
+				{% endblock %}

@@ -1,0 +1,102 @@
+{% load static %}
+
+{% load bootstrap %}
+
+
+<DOCTYPE!>
+<htmlt>
+	<head>
+		<title>REGISTER</title>
+
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+		<script src="{%	static	'js/jquery-3.2.1.min.js' %}"></script>
+	</head>
+
+
+	<body>
+
+	<nav class="navbar navbar-expand-md navbar-white bg-dark fixed-top">
+		<a href="#" class="logo navbar-brand"> POLL SYSTEM </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
+				<li class="nav-item"><a class="nav-link" href="../login">LOGIN</a></li>
+				<li class="nav-item"><a class="nav-link active" href="#" >REGISTER</a></li>
+			</ul>
+
+		</div>
+				
+
+	</nav>
+
+
+	<div class="container">
+				
+				
+
+		<div class="content">
+				{% block content %}
+
+				<form method="post" class="form-signin" action="{% url 'register' %}">
+				    {% csrf_token %}
+
+					{{ form|bootstrap }}
+
+
+					<input  class="btn btn-success" type="submit" value="register" />
+
+				        
+
+
+				</form>
+
+				{% endblock %}
+			</div>
+
+
+		</div>
+
+	</div>
+
+			
+	<footer>
+							
+		<ul>
+			<span>Team members</span>
+			<li>AMER ALHOMAIDHI</li>
+			<li>ABDULAULAH ALHUSIEN</li>
+		</ul>
+
+	</footer>
+
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
