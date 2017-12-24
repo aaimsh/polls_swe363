@@ -1,22 +1,29 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import RegisterForm
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, View
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from braces.views import AnonymousRequiredMixin
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import UpdateEmailForm
 
-# Create your views here.
 
-
-@login_required(login_url='/accounts/login/')
+@login_required()
 def profile(request):
     user = get_object_or_404(User, username=request.user)
-    return render(request, 'profilev2.html', {'user': user})
+    password_change_form = PasswordChangeForm(user)
+    update_email_form = UpdateEmailForm()
+    context = {'user': user,
+               'password_change_form': password_change_form,
+               'update_email_form': update_email_form
+               }
+    return render(request, 'profilev2.html', context)
 
 
-class UserCreationView(CreateView):
+class UserCreationView(AnonymousRequiredMixin, CreateView):
     """If request method is GET it will return a UserCreation Form, if the method is POST, it will process the form,
     validate it, Create an User Instance and save it in the database.
     """
@@ -29,7 +36,6 @@ class UserCreationView(CreateView):
 class EmailChangeView(UpdateView):
     model = User
     fields = ['email']
-    template_name = 'update_email.html'
     success_url = '/accounts/profile/'
 
     """

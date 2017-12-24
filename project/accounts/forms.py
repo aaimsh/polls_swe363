@@ -56,3 +56,10 @@ class RegisterForm(UserCreationForm):
         user.last_name = self.clean_lastname()
         user.save()
         return user
+
+
+class UpdateEmailForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['email']

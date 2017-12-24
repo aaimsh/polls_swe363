@@ -14,20 +14,22 @@ class PollsList(ListView):
     template_name = 'polls_dummy.html'
     context_object_name = 'polls'
 
+    def get_queryset(self):
+        return Question.objects.filter(author=self.request.user.username)
+
 
 class PollDetailView(LoginRequiredMixin, DetailView):
     model = Question
     context_object_name = 'poll'
 
 
-
 @login_required()
 def create_question_view(request):
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         qform = CreateQuestionForm(request.POST)
         qform.question = request.POST['question']
-        qform.author = request.user
+        qform.author = request.user.username
 
         cform = ChoiceForm(request.POST)
         cform.choice1 = request.POST['choice1']

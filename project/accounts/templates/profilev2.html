@@ -1,5 +1,4 @@
 
-<!-- saved from url=(0044)http://localhost:8080/pollSystem/profile.php -->
 <html><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="data:text/css,@import%20url%28%27autofill.css%27%29%3B"></head><body><doctype!>
 <htmlt>
 	
@@ -60,7 +59,7 @@
 		  <ul class="nav nav-tabs" id="myTabs">
 		    <li class="active"><a href="http://localhost:8080/pollSystem/profile.php#home">My polls</a></li>
 		    <li><a href="http://localhost:8080/pollSystem/profile.php#profile">profile </a></li>
-		    <li><a href="http://localhost:8080/pollSystem/profile.php#changePasswrod">Change Passwrod </a></li>
+		    <li><a href="http://localhost:8080/pollSystem/profile.#changePasswrod">Change Passwrod </a></li>
 		    <li><a href="http://localhost:8080/pollSystem/profile.php#changeEmail">change Email </a></li>
 		  </ul>
 
@@ -75,21 +74,22 @@
 		    </div>
 		    <div id="changePasswrod" class="tab-pane fade">
 		      <h3>Change password</h3>
-		      <form method="POST" class="form-signin" action="http://localhost:8080/pollSystem/update_password.php">
-		      	<input type="password" name="password" placeholder="new password">
-		      	<input type="password" name="cpassword" placeholder="confirm password">
+		      <form method="POST" class="form-signin" action="{% url 'accounts:update-password' %}">
+                  {% csrf_token %}
+                  {{ password_change_form }}
 		      	<br>
 		      	<input class="btn btn-success" type="submit" value="update">
 		      </form>
 		    </div>
 		    <div id="changeEmail" class="tab-pane fade">
 		      <h3>change email address</h3>
-		      <form method="POST" class="form-signin" action="http://localhost:8080/pollSystem/update_email.php">
-		      	<input class="" type="email" name="newEmail" placeholder="New Email">
-		      	<br>
-		      	<input class="btn btn-success" type="submit" value="update">
-		      </form>
-		    </div>
+		      <form method="POST" class="form-signin" action="{% url 'accounts:update-email' %}">
+                  {% csrf_token %}
+                  {{ update_email_form}}
+                  <br>
+                  <input class="btn btn-success" type="submit" value="update">
+              </form>
+            </div>
 		  </div>
 		</div>
 

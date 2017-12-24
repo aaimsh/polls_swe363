@@ -1,9 +1,17 @@
+{% include 'head.html'%}
+{% include 'nav.html' %}
+
+{% block content %}
 <ul>
     {% if polls %}
         {% for poll in polls %}
-            <li><a href="{% url 'polls:poll-detail' poll.id %}">{{ poll.question }}</a></li>
+            <li><a href="{% url 'polls:poll-detail' poll.id %}" style="color: #0e90d2">{{ poll.question }}</a></li>
+            {% for choice in poll.choice_set.all %}
+                <li>{{ choice.choice }} -- {{ choice.vote }} vote{{ choice.vote|pluralize }}</li>
+            {% endfor %}
         {% endfor %}
         {% else %}
             <p>Nothing to view</p>
     {% endif %}
 </ul>
+{% endblock %}

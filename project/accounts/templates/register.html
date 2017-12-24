@@ -23,7 +23,7 @@
 		<div class="content">
 				{% block content %}
 
-				<form method="GET" class="form-signin" action="{% url 'accounts:register' %}">
+				<form method="POST" class="form-signin" action="{% url 'accounts:register' %}">
 					
 				    {% csrf_token %}
 
