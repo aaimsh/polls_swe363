@@ -1,17 +1,115 @@
-{% include 'head.html'%}
-{% include 'nav.html' %}
+<DOCTYPE!>
+<htmlt>
+	<head>
+		<title>Polls</title>
+        {% include 'head.html'%}
+	</head>
 
-{% block content %}
-<ul>
-    {% if polls %}
-        {% for poll in polls %}
-            <li><a href="{% url 'polls:poll-detail' poll.id %}" style="color: #0e90d2">{{ poll.question }}</a></li>
-            {% for choice in poll.choice_set.all %}
-                <li>{{ choice.choice }} -- {{ choice.vote }} vote{{ choice.vote|pluralize }}</li>
-            {% endfor %}
-        {% endfor %}
-        {% else %}
-            <p>Nothing to view</p>
-    {% endif %}
-</ul>
-{% endblock %}
+
+	<body>
+	    
+    {% include 'nav.html' %}
+
+    <div class="left-side">
+        <div class="list-group">
+                {% block content %}
+                    {% if polls %}
+                        {% for poll in polls %}
+                            <a class="list-group-item" onclick="show({%poll.id %})">{{ poll.question }}</a>
+                        {% endfor %}
+                    {% endif %}
+                {% endblock %}
+                <button class="btn btn-seccess list-group-item">Add poll</button>
+            </div>
+    </div>
+
+	<div class="container">
+
+		<div class="poll-header">
+			<h3>Poll #1 Results</h3>
+		</div>
+
+		<div class="content">
+
+
+			{% block content %}
+			    {% if polls %}
+			        {% for poll in polls %}
+			        	<div class="poll-result">
+							<p>{{ poll.question }}</p>
+							<ul class="opstions-result">
+								{% for choice in poll.choice_set.all %}
+									<li>{{ choice.choice }} -- {{ choice.vote }} vote{{ choice.vote|pluralize }}</li>
+								{% endfor %}
+							</ul>
+
+							<div class="chart-result" id="chart-{% poll.id %}"></div>
+						</div>
+					{% endfor %}
+			    {% else %}
+			    	<p>Nothing to view</p>
+			    {% endif %}
+			{% endblock %}
+
+
+		</div>
+
+	</div>
+
+	
+
+
+			
+	<footer>
+							
+		<ul>
+			<span>Team members</span>
+			<li>AMER ALHOMAIDHI</li>
+			<li>ABDULAULAH ALHUSIEN</li>
+		</ul>
+
+	</footer>
+
+	</body>
+
+</html>
+
+
+
+
+
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var options = {
+               'width': 300,
+               'height': 200,
+               'chartArea': {'width': '100%', 'height': '80%'},
+               'legend': {'position': 'bottom'},
+                'pieHole': 0.4
+    };
+
+        var chart = new google.visualization.PieChart(document.getElementsByClassName('chart-result'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+
+
