@@ -25,7 +25,7 @@ SECRET_KEY = 'e3nyss_(_k^j&k-p2$_jx*ml#c$wqu)v9$%$df)zw4pndpad-&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'aaimsh.pythonanywhere.com']
 
 
 # Application definition

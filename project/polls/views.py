@@ -49,7 +49,6 @@ def create_question_view(request):
     return render(request, 'create_poll.html', {'cform': cform, 'qform': qform})
 
 
-@login_required()
 def vote(request, pk):
     q = get_object_or_404(Question, pk=pk)
     try:

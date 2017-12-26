@@ -1,7 +1,9 @@
 <DOCTYPE!>
-<htmlt>
+<html>
 	<head>
 		<title>Polls</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
         {% include 'head.html'%}
 	</head>
 
@@ -19,14 +21,14 @@
                         {% endfor %}
                     {% endif %}
                 {% endblock %}
-                <button class="btn btn-seccess list-group-item">Add poll</button>
+                <a class="btn btn-seccess list-group-item" href="{% url 'polls:create-poll' %}">Add poll</a>
             </div>
     </div>
 
 	<div class="container">
 
 		<div class="poll-header">
-			<h3>Poll #1 Results</h3>
+			<h3>Results</h3>
 		</div>
 
 		<div class="content">
@@ -36,14 +38,13 @@
 			    {% if polls %}
 			        {% for poll in polls %}
 			        	<div class="poll-result">
-							<p>{{ poll.question }}</p>
+							<p>Vote link: localhost:8000{% url 'polls:vote' poll.id%}</p>
 							<ul class="opstions-result">
-								{% for choice in poll.choice_set.all %}<br>
+								{% for choice in poll.choice_set.all %}
 									<li>{{ choice.choice }} -- {{ choice.vote }} vote{{ choice.vote|pluralize }}</li>
 
 								{% endfor %}
 							</ul>
-
 							<div class="chart-result" id="chart-{{poll.id}}"></div>
 						</div>
 					{% endfor %}
@@ -71,29 +72,14 @@
 
 	</footer>
 
-	</body>
-
-</html>
-
-
-
-
-
 <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+      function drawChart(data) {
+
 
         var options = {
-          title: 'My Daily Activities',
+          title: 'votes',
           pieHole: 0.4,
         };
 
@@ -104,13 +90,25 @@
                'legend': {'position': 'bottom'},
                 'pieHole': 0.4
     };
+        {% block conten3 %}
+            {% for poll in polls %}
+            var data_{{ poll.id }} = google.visualization.arrayToDataTable([
+                ['option ', 'votes'],
+                    {% for choice in poll.choice_set.all %}
+                    ['{{ choice }}', {{ choice.vote }} ],
+                {% endfor %}
+            ]);
+            {% endfor %}
+        {% for poll in polls %}
+            var chart_{{ poll.id }} = new google.visualization.PieChart(document.getElementById('chart-{{ poll.id }}'));
+            chart_{{ poll.id }}.draw(data_{{ poll.id }}, options);
+        {% endfor %}
 
-        var chart = new google.visualization.PieChart(document.getElementsByClassName('chart-result'));
-        chart.draw(data, options);
       }
-    </script>
 
 
+</script>
+{% endblock %}
 
-
-
+	</body>
+</html>
