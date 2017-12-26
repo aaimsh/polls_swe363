@@ -9,18 +9,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class PollsList(ListView):
+class PollsList(LoginRequiredMixin, ListView):
     model = Question
     template_name = 'polls_dummy.html'
     context_object_name = 'polls'
 
     def get_queryset(self):
         return Question.objects.filter(author=self.request.user.username)
-
-
-class PollDetailView(LoginRequiredMixin, DetailView):
-    model = Question
-    context_object_name = 'poll'
 
 
 @login_required()
@@ -51,13 +46,16 @@ def create_question_view(request):
 
 def vote(request, pk):
     q = get_object_or_404(Question, pk=pk)
-    try:
-        ans = q.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        error = "You didn't select a choice"
-        return render(request, 'detail_dummy.html', {'error': error, 'poll': q})
-    else:
-        ans.vote += 1
-        ans.save()
-    return HttpResponse('Thanks for voting!')
+    if request.method == 'GET':
+        return render(request, 'detail_dummy.html', {'poll': q})
+    elif request.method == 'POST':
+        try:
+            ans = q.choice_set.get(pk=request.POST['choice'])
+        except (KeyError, Choice.DoesNotExist):
+            error = "You didn't select a choice"
+            return render(request, 'detail_dummy.html', {'error': error, 'poll': q})
+        else:
+            ans.vote += 1
+            ans.save()
+        return HttpResponse('Thanks for voting!')
 
