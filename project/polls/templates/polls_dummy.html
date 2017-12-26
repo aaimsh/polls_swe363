@@ -15,7 +15,7 @@
                 {% block content %}
                     {% if polls %}
                         {% for poll in polls %}
-                            <a class="list-group-item" onclick="show({%poll.id %})">{{ poll.question }}</a>
+                            <a class="list-group-item" onclick="show({{poll.id }})">{{ poll.question }}</a>
                         {% endfor %}
                     {% endif %}
                 {% endblock %}
@@ -32,18 +32,19 @@
 		<div class="content">
 
 
-			{% block content %}
+			{% block content1 %}
 			    {% if polls %}
 			        {% for poll in polls %}
 			        	<div class="poll-result">
 							<p>{{ poll.question }}</p>
 							<ul class="opstions-result">
-								{% for choice in poll.choice_set.all %}
+								{% for choice in poll.choice_set.all %}<br>
 									<li>{{ choice.choice }} -- {{ choice.vote }} vote{{ choice.vote|pluralize }}</li>
+
 								{% endfor %}
 							</ul>
 
-							<div class="chart-result" id="chart-{% poll.id %}"></div>
+							<div class="chart-result" id="chart-{{poll.id}}"></div>
 						</div>
 					{% endfor %}
 			    {% else %}

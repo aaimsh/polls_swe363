@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'accounts.apps.AccountsConfig',
     'bootstrapform',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
