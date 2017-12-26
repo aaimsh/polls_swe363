@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aacd9d4e-a409-40da-aa1a-79f57639bfc5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/static/css/style.css" afterPath="$PROJECT_DIR$/accounts/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/includes/head.html" afterPath="$PROJECT_DIR$/accounts/templates/includes/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/includes/nav.html" afterPath="$PROJECT_DIR$/accounts/templates/includes/nav.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/profilev2.html" afterPath="$PROJECT_DIR$/accounts/templates/profilev2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/polls/templates/create_poll.html" afterPath="$PROJECT_DIR$/polls/templates/create_poll.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/polls/templates/detail_dummy.html" afterPath="$PROJECT_DIR$/polls/templates/detail_dummy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/polls/templates/polls_dummy.html" afterPath="$PROJECT_DIR$/polls/templates/polls_dummy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/polls/templates/results.html" afterPath="$PROJECT_DIR$/polls/templates/results.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/polls/views.py" afterPath="$PROJECT_DIR$/polls/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/settings.py" afterPath="$PROJECT_DIR$/project/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/urls.py" afterPath="$PROJECT_DIR$/project/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -339,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514305866942</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Edit login, profile, pollslist, Add Logout">
+      <created>1514320765959</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1514320765959</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
